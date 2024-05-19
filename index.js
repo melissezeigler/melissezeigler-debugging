@@ -37,13 +37,15 @@ function checkGuess() {
 
     submitButton.disabled = true;
     guessInput.disabled = true;
-  }
+    // added else statment and commented the next line after else
+  } else {
 
-  if (guess !== targetNumber) {
+  // Else statement changed from tooLowMessage to tooHighMessage
+  // if (guess !== targetNumber) {
     if (guess < targetNumber) {
       tooLowMessage.style.display = '';
     } else {
-      tooLowMessage.style.display = '';
+      tooHighMessage.style.display = '';
     }
 
     const remainingAttempts = maxNumberOfAttempts - attempts;
@@ -52,7 +54,7 @@ function checkGuess() {
     numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
 
-  if (attempts ==== maxNumberOfAttempts) {
+  if (attempts === maxNumberOfAttempts) {
     submitButton.disabled = true;
     guessInput.disabled = true;
   }
@@ -62,29 +64,35 @@ function checkGuess() {
   resetButton.style.display = '';
 }
 
+// Removed the = after <
 function hideAllMessages() {
-  for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) {
+  for (let elementIndex = 0; elementIndex < messages.length; elementIndex++) {
     messages[elementIndex].style.display = 'none';
   }
 }
 
-funtion setup() {
+function setup() {
   // Get random number
   targetNumber = getRandomNumber(1, 100);
   console.log(`target number: ${targetNumber}`);
 
+
   // Reset number of attempts
-  maxNumberOfAttempts = 0;
+  // change the variable maxNumberOfAttempts to attemps
+  attempts = 0;
 
   // Enable the input and submit button
-  submitButton.disabeld = false;
+  // typo errorr for disabled
+  submitButton.disabled = false;
   guessInput.disabled = false;
 
   hideAllMessages();
-  resetButton.style.display = 'none';
+  // commented out the resetButton
+  // resetButton.style.display = 'none';
 }
 
 submitButton.addEventListener('click', checkGuess);
 resetButton.addEventListener('click', setup);
 
 setup();
+// There are 5 bugs and the other 3 are just typographical errors and unnecessary code
